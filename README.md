@@ -58,8 +58,8 @@ External requests: Google Fonts (Fredoka, Fraunces) and Three.js from cdnjs. If 
 ## Run locally
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/mizzle-puddlewick.git
-cd mizzle-puddlewick
+git clone (https://github.com/abhishek-code4/Mizzle)
+cd Mizzle
 # open index.html directly, or serve it:
 npx serve .
 ```
