@@ -4,7 +4,7 @@
 
 A portfolio website for **Mizzle**, an original baby raincloud and Junior Weather Weaver. Built for the [haX.baby "Baby's First Website"](https://hax.baby/first-website) 48-hour hackathon (17–19 Oct 2026), **Track 2: Your Own Baby**.
 
-**Live demo:** https://mizzle-puddlewick.vercel.app
+**Live demo:** [https://meet-mizzled.netlify.app]
 **Built by:** Abhishek
 
 ---
