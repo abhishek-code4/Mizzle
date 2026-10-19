@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en" data-mode="day">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mizzle · Junior Weather Weaver | Baby's First Portfolio</title>
+<meta name="description" content="Meet Mizzle, a baby raincloud who weaves tiny weather. haX.baby Track 2 portfolio.">
+<meta name="theme-color" content="#fff8f1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Fraunces:wght@600;800&display=swap">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--bg:#fff8f1;--ink:#5c4033;--accent:#a34063;--card:#fff;--cloud:#fff;--soft:#ffe4e1}
+[data-mode=night]{--bg:#241a38;--ink:#f6e7ff;--accent:#ff9ec0;--card:#33264d;--cloud:#e6defa;--soft:#3b2d5c}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(var(--soft) 1.5px,transparent 1.5px) 0 0/22px 22px,var(--bg);color:var(--ink);font:400 1.05rem/1.6 Fredoka,system-ui,sans-serif;transition:background-color .5s,color .5s;overflow-x:hidden}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15}
+h1{font-size:clamp(3rem,10vw,5.5rem);color:var(--accent)}
+h2{font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:1rem}
+h3{margin-bottom:.4rem}
+p{margin-bottom:.8rem}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;color:#000;padding:.4rem;z-index:99}
+.ticker{overflow:hidden;white-space:nowrap;background:var(--accent);color:#fff;font-size:.85rem;padding:4px 0}
+.ticker span{display:inline-block;padding-left:100%;animation:mq 26s linear infinite}
+@keyframes mq{to{transform:translateX(-100%)}}
+.ctrl{position:fixed;top:36px;right:10px;display:flex;gap:6px;z-index:50}
+.btn,.ctrl button{font:inherit;font-size:.9rem;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:.35rem .9rem;box-shadow:3px 3px 0 var(--ink);cursor:pointer;text-decoration:none;display:inline-block;transition:transform .1s,box-shadow .1s}
+.btn:hover,.ctrl button:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.hero{min-height:88vh;max-width:1000px;margin:auto;padding:4.5rem 1.2rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
+#mz{width:min(100%,380px);margin:auto;overflow:visible;animation:bob 4s ease-in-out infinite;transition:rotate .15s}
+#mz.boop{rotate:7deg}
+#pl,#pr{transition:transform .15s}
+#nose{cursor:pointer}
+.lid,#zzz{opacity:0;transition:opacity .4s}
+[data-mode=night] .lid,[data-mode=night] #zzz{opacity:1}
+.drop{animation:rain 1.6s infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes rain{0%{transform:translateY(-6px);opacity:0}30%{opacity:1}100%{transform:translateY(24px);opacity:0}}
+.kicker{font-size:1.2rem;margin:0}
+.tag{font-family:Fraunces,serif;font-style:italic;font-size:1.3rem}
+.sec{max-width:1000px;margin:auto;padding:3.5rem 1.2rem}
+.center{text-align:center}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:1.2rem;box-shadow:6px 6px 0 var(--accent);transition:background-color .5s}
+.sheet{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.2rem}
+.sheet dt{font-weight:600;color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.6rem}
+.keys{display:grid;grid-template-columns:repeat(8,1fr);gap:.4rem;margin-bottom:1rem}
+.key{aspect-ratio:1;font-size:1.3rem;border:2px solid var(--ink);border-radius:50%;background:var(--soft);cursor:pointer;transition:transform .15s}
+.key.hit{transform:scale(1.25);background:var(--accent)}
+#odo span{display:inline-block;width:1.5rem;margin:0 2px;text-align:center;background:var(--ink);color:var(--bg);border-radius:4px;font:1.2rem monospace}
+.flips{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.flip{perspective:800px;height:140px;cursor:pointer}
+.flip .in{position:relative;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.on .in{transform:rotateY(180deg)}
+.f,.b{position:absolute;inset:0;backface-visibility:hidden;display:grid;place-items:center;text-align:center;padding:.4rem;font-size:.85rem;line-height:1.3;border:2px dashed var(--ink);border-radius:12px;background:var(--soft)}
+.b{transform:rotateY(180deg)}
+#route{height:260vh}
+.stick{position:sticky;top:0;height:100vh;max-width:1000px;margin:auto;padding:2rem 1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:center}
+.stick svg{width:100%;max-height:80vh;margin:auto}
+#rlist{padding-left:1.2rem}
+#rlist li{opacity:.4;transition:opacity .4s}
+#rlist li.on{opacity:1;font-weight:600}
+.stop{opacity:.35;transition:opacity .4s}.stop.on{opacity:1}
+.scene{min-height:70vh;display:grid;place-items:center;text-align:center;padding:2rem 1.2rem;max-width:620px;margin:auto}
+.scene b{font-size:4.5rem;display:block}
+.js .scene{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.js .scene.in{opacity:1;transform:none}
+#wf{display:grid;gap:.6rem}
+#wf input{font:inherit;padding:.5rem .8rem;border:2px solid var(--ink);border-radius:12px;background:var(--bg);color:var(--ink)}
+#gb{list-style:none;padding:0;margin-top:1.2rem;display:grid;gap:.5rem}
+#gb li{background:var(--card);border:2px dotted var(--ink);border-radius:12px;padding:.4rem .8rem;overflow-wrap:anywhere}
+footer{text-align:center;font-size:.85rem;padding:3rem 1.2rem;max-width:700px;margin:auto;opacity:.85}
+#egg{position:fixed;left:50%;top:28%;transform:translateX(-50%);z-index:100;background:var(--accent);color:#fff;padding:.8rem 1.4rem;border-radius:20px;border:3px solid var(--ink);font-weight:600;text-align:center;width:max-content;max-width:90vw}
+#egg[hidden]{display:none}
+.sp,.fall{position:fixed;pointer-events:none;z-index:99}
+.sp{color:var(--accent);animation:sp .7s forwards}
+@keyframes sp{to{opacity:0;transform:translateY(18px) scale(.3)}}
+.fall{top:-40px;animation:fall 1.8s ease-in forwards}
+@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
+.shake{animation:shake .5s 3}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media(max-width:720px){
+.hero{grid-template-columns:1fr;text-align:center;padding-top:5.5rem}
+.stick{grid-template-columns:1fr;align-content:center;padding-top:3rem}
+.stick svg{max-height:42vh}
+.sheet{grid-template-columns:1fr}
+.keys{grid-template-columns:repeat(4,1fr)}
+.ctrl{top:34px;right:6px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+#gl{position:sticky;top:0;display:block;width:100%;height:100vh;margin-bottom:-100vh;pointer-events:none}
+#story .scene{position:relative;z-index:1}
+.scene>div{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:1.2rem 1.4rem;box-shadow:6px 6px 0 var(--accent)}
+@media(min-width:900px){.scene{margin-left:6vw;margin-right:auto;text-align:left}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="ticker" aria-hidden="true"><span>✦ now raining: tiny weather ✦ site under construction (forever) ✦ psst: noses are for booping ✦ best viewed on any screen ✦</span></div>
+<div class="ctrl">
+<button id="mode" type="button" aria-label="Switch between day and night">🌙 Night</button>
+<button id="mute" type="button" aria-pressed="false" aria-label="Mute or unmute sound">🔊 Sound on</button>
+</div>
+<div id="egg" role="status" hidden>⚡ hic! You found my Thunder Hiccup! ⚡</div>
+
+<main id="main">
+<header class="hero">
+<svg id="mz" viewBox="0 0 200 175" role="img" aria-label="Mizzle, a cute baby raincloud with big eyes and pink cheeks">
+<defs><g id="blob"><circle cx="60" cy="108" r="34"/><circle cx="142" cy="108" r="34"/><circle cx="82" cy="72" r="32"/><circle cx="126" cy="76" r="28"/><rect x="60" y="80" width="82" height="62" rx="30"/></g></defs>
+<use href="#blob" fill="var(--ink)" stroke="var(--ink)" stroke-width="7"/>
+<use href="#blob" fill="var(--cloud)"/>
+<ellipse cx="62" cy="123" rx="9" ry="6" fill="#ff9ec0" opacity=".8"/><ellipse cx="138" cy="123" rx="9" ry="6" fill="#ff9ec0" opacity=".8"/>
+<circle cx="80" cy="105" r="12" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/><circle cx="120" cy="105" r="12" fill="#fff" stroke="var(--ink)" stroke-width="2.5"/>
+<g id="pl"><circle cx="80" cy="105" r="6.5" fill="#3b2a24"/><circle cx="82" cy="102.5" r="2" fill="#fff"/></g>
+<g id="pr"><circle cx="120" cy="105" r="6.5" fill="#3b2a24"/><circle cx="122" cy="102.5" r="2" fill="#fff"/></g>
+<path class="lid" d="M68 105a12 12 0 0 1 24 0z" fill="var(--cloud)" stroke="var(--ink)" stroke-width="2.5"/>
+<path class="lid" d="M108 105a12 12 0 0 1 24 0z" fill="var(--cloud)" stroke="var(--ink)" stroke-width="2.5"/>
+<path id="mouth" d="M90 127q10 9 20 0" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round"/>
+<circle id="nose" cx="100" cy="116" r="5" fill="#a34063" stroke="transparent" stroke-width="16" tabindex="0" role="button" aria-label="Boop Mizzle's nose"/>
+<text id="zzz" x="146" y="50" font-size="20" font-weight="700" fill="var(--ink)">z Z</text>
+<g fill="#6bb6ff"><path class="drop" d="M70 148q-6 9 0 12q6-3 0-12z"/><path class="drop" style="animation-delay:.5s" d="M100 150q-6 9 0 12q6-3 0-12z"/><path class="drop" style="animation-delay:1s" d="M130 148q-6 9 0 12q6-3 0-12z"/></g>
+</svg>
+<div>
+<p class="kicker" id="greet">hi! i'm</p>
+<h1>Mizzle</h1>
+<p class="tag">“Small weather, big hugs.”</p>
+<p>A baby raincloud, one foot wide, who weaves tiny weather for tiny places. Shy at first, giggly after. I hiccup thunder when I'm too happy. Move your cursor, I'm watching!</p>
+<a class="btn" href="#work">See my weather ↓</a>
+</div>
+</header>
+
+<section class="sec" id="about">
+<h2>Character sheet</h2>
+<dl class="card sheet">
+<dt>1 · Name</dt><dd>Mizzle</dd>
+<dt>2 · What I am</dt><dd>A baby raincloud, cream-white with berry cheeks. Curious, shy, easily delighted. My voice is a soft “plink-plink”.</dd>
+<dt>3 · What I do</dt><dd>Junior Weather Weaver at the Puddlewick Weather Workshop: lullaby rain, puddle postcards, umbrella routes.</dd>
+<dt>4 · My story</dt><dd>Sneezed out of a grumpy thundercloud, then learned one small drop can fix a whole day. Scroll down ↓</dd>
+<dt>5 · Tagline</dt><dd>“Small weather, big hugs.”</dd>
+</dl>
+</section>
+
+<section class="sec" id="work">
+<h2>My tiny weather</h2>
+<div class="grid">
+<article class="card">
+<h3>1 · The Drizzle Lab</h3>
+<p>A raindrop music box. Tap a drop or press keys 1–8. Every sound is synthesized live.</p>
+<div class="keys" id="keys"></div>
+<p><button class="btn" id="rainbtn" type="button" aria-pressed="false">🌧️ Rain sounds: off</button></p>
+<p>Raindrops you've made: <span id="odo" role="img"></span></p>
+</article>
+<article class="card">
+<h3>2 · Puddle Postcards</h3>
+<p>Weather I mailed to friends. Flip them!</p>
+<div class="flips">
+<div class="flip" tabindex="0" role="button" aria-label="Flip postcard: Monday Mist"><div class="in"><div class="f">🌫️<br>Monday Mist</div><div class="b">A soft fog hug for sleepy commuters.</div></div></div>
+<div class="flip" tabindex="0" role="button" aria-label="Flip postcard: Sunbreak"><div class="in"><div class="f">🌤️<br>Sunbreak</div><div class="b">One sunbeam, delivered through a gap in me.</div></div></div>
+<div class="flip" tabindex="0" role="button" aria-label="Flip postcard: Hiccup Storm"><div class="in"><div class="f">⚡<br>Hiccup Storm</div><div class="b">Three tiny thunders. Sorry! (Not sorry.)</div></div></div>
+</div>
+</article>
+</div>
+</section>
+
+<section id="route" aria-label="Umbrella Routes">
+<div class="stick">
+<div>
+<h2>3 · Umbrella Routes</h2>
+<p>Scroll to fly with me across Puddlewick and drop weather where it's needed.</p>
+<ol id="rlist"><li>🌷 Tulip Shop: one polite drizzle</li><li>🍞 Bakery roof: a warm morning mist</li><li>🌱 Seed Garden: the big soak</li></ol>
+</div>
+<svg viewBox="0 0 300 400" role="img" aria-label="Animated map: Mizzle flies along a winding route past three stops">
+<path id="rbase" d="M40 30C260 50 40 130 240 180S50 290 250 370" fill="none" stroke="var(--ink)" stroke-width="3" stroke-dasharray="4 8" opacity=".35"/>
+<path id="rpath" d="M40 30C260 50 40 130 240 180S50 290 250 370" fill="none" stroke="var(--accent)" stroke-width="5" stroke-linecap="round"/>
+<g class="stop" data-at=".3"><circle r="16" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/><text y="6" text-anchor="middle" font-size="17">🌷</text></g>
+<g class="stop" data-at=".62"><circle r="16" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/><text y="6" text-anchor="middle" font-size="17">🍞</text></g>
+<g class="stop" data-at=".95"><circle r="16" fill="var(--card)" stroke="var(--ink)" stroke-width="2.5"/><text y="6" text-anchor="middle" font-size="17">🌱</text></g>
+<g id="rmk"><text y="9" text-anchor="middle" font-size="30">☁️</text></g>
+</svg>
+</div>
+</section>
+
+<section id="story">
+<h2 class="center">How I got here</h2>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div class="scene"><div><b>⚡</b><h3>The Sneeze</h3><p>One grumpy afternoon, a huge thundercloud sneezed over the hill town of Puddlewick. Ah… ah… ACHOO! Out puffed one very small cloud. That was me.</p></div></div>
+<div class="scene"><div><b>💧</b><h3>Plink</h3><p>I tried to rain on the whole town. I managed one drop. Plink. It landed right in the baker's flour, and she laughed, kindly. A cute little disaster.</p></div></div>
+<div class="scene"><div><b>🌷</b><h3>The Tulip Shop</h3><p>Mrs. Tulip, who sells umbrellas, whispered: “Small weather matters. One drop is exactly enough for one thirsty seed.” I have worked that way ever since.</p></div></div>
+<div class="scene"><div><b>🌈</b><h3>Now</h3><p>Today I weave tiny weather at the Weather Workshop: lullaby rain, puddle postcards, umbrella routes. Next stop: wherever you are. Thanks for visiting!</p></div></div>
+</section>
+
+<section class="sec" id="wish">
+<h2>Wish wall</h2>
+<form id="wf" class="card">
+<label for="wi">Leave a wish for my next rain</label>
+<input id="wi" maxlength="80" autocomplete="off" placeholder="e.g. gentle rain for my plants">
+<button class="btn" type="submit">Send 💌</button>
+</form>
+<ul id="gb"></ul>
+</section>
+</main>
+
+<footer>
+<p>Built by Abhishek for haX.baby “Baby's First Website” 2026 · Track 2</p>
+<p>Credits: Mizzle and all art are original, drawn in SVG/CSS. Sounds are synthesized live with the Web Audio API. Fonts: Fredoka and Fraunces (Google Fonts, OFL). Scene icons: your device's emoji set. No existing IP used.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement;
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- audio (Web Audio, no files) ---------- */
+let ac,master,muted=ls.get('mz_mute')==='1',rainSrc;
+function ctx(){
+  if(!ac){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;
+    ac=new A();master=ac.createGain();master.gain.value=muted?0:.6;master.connect(ac.destination)}
+  if(ac.state==='suspended')ac.resume();return ac}
+function tone(f,d=1.1,type='sine',v=.25){
+  if(muted)return;const a=ctx();if(!a)return;
+  const o=a.createOscillator(),g=a.createGain(),t=a.currentTime;
+  o.type=type;o.frequency.value=f;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+d);
+  o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.05)}
+const muteBtn=$('#mute');
+function paintMute(){muteBtn.setAttribute('aria-pressed',muted);muteBtn.textContent=muted?'🔇 Muted':'🔊 Sound on';if(master)master.gain.value=muted?0:.6}
+muteBtn.onclick=()=>{muted=!muted;ls.set('mz_mute',muted?'1':'0');paintMute()};
+paintMute();
+addEventListener('pointerdown',e=>{if(e.target.closest('button:not(.key),a,.flip'))tone(880+Math.random()*200,.12,'triangle',.08)});
+
+/* ---------- day / night ---------- */
+const mouth=$('#mouth');
+function setMode(m){
+  root.dataset.mode=m;$('#mode').textContent=m==='night'?'☀️ Day':'🌙 Night';
+  mouth.setAttribute('d',m==='night'?'M93 128q7 3 14 0':'M90 127q10 9 20 0');
+  $('meta[name=theme-color]').content=m==='night'?'#241a38':'#fff8f1';ls.set('mz_mode',m)}
+$('#mode').onclick=()=>{const n=root.dataset.mode==='night'?'day':'night';setMode(n);tone(n==='night'?330:660,.6,'sine',.2)};
+setMode(ls.get('mz_mode')==='night'?'night':'day');
+
+/* ---------- eyes follow cursor / touch, with idle wander ---------- */
+const svg=$('#mz'),pl=$('#pl'),pr=$('#pr');let last=0;
+function look(x,y){
+  const r=svg.getBoundingClientRect(),dx=x-(r.left+r.width/2),dy=y-(r.top+r.height*.6),d=Math.hypot(dx,dy)||1,m=Math.min(4.5,d/40);
+  pl.style.transform=pr.style.transform=`translate(${dx/d*m}px,${dy/d*m}px)`}
+['pointermove','pointerdown'].forEach(t=>addEventListener(t,e=>{last=Date.now();look(e.clientX,e.clientY)},{passive:true}));
+setInterval(()=>{if(Date.now()-last>3000){const a=Math.random()*6.28;pl.style.transform=pr.style.transform=`translate(${Math.cos(a)*3}px,${Math.sin(a)*2}px)`}},1800);
+
+/* ---------- sparkle trail ---------- */
+let lt=0;
+if(!reduce)addEventListener('pointermove',e=>{
+  const n=performance.now();if(n-lt<45)return;lt=n;
+  const s=document.createElement('i');s.className='sp';s.textContent=['✦','✧','·','♡'][Math.random()*4|0];
+  s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';document.body.append(s);setTimeout(()=>s.remove(),700)},{passive:true});
+
+function burst(list,n=28){
+  if(reduce)n=8;
+  for(let i=0;i<n;i++){const s=document.createElement('i');s.className='fall';s.textContent=list[i%list.length];
+    s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.8+'s';s.style.fontSize=16+Math.random()*20+'px';
+    document.body.append(s);setTimeout(()=>s.remove(),2700)}}
+
+/* ---------- visitor memory ---------- */
+const v=(+ls.get('mz_v')||0)+1;ls.set('mz_v',v);
+$('#greet').textContent=v>1?`welcome back! (visit #${v}) i'm`:"hi! i'm";
+
+/* ---------- odometer ---------- */
+let drops=+ls.get('mz_drops')||0;const od=$('#odo');
+function paint(){od.innerHTML='';od.setAttribute('aria-label',drops+' raindrops');
+  String(drops).padStart(5,'0').split('').forEach(c=>{const s=document.createElement('span');s.textContent=c;od.append(s)})}
+function count(){drops++;ls.set('mz_drops',drops);paint()}
+paint();
+
+/* ---------- Drizzle Lab ---------- */
+const N=[262,294,330,392,440,523,587,659],names='C D E G A C D E'.split(' '),keys=$('#keys');
+function play(i){const b=keys.children[i];tone(N[i],1.4,'sine',.3);tone(N[i]*2,.8,'triangle',.08);count();
+  b.classList.add('hit');setTimeout(()=>b.classList.remove('hit'),250)}
+N.forEach((f,i)=>{const b=document.createElement('button');b.type='button';b.className='key';b.textContent='💧';
+  b.setAttribute('aria-label',`Raindrop note ${names[i]}, key ${i+1}`);b.onclick=()=>play(i);keys.append(b)});
+addEventListener('keydown',e=>{const n=+e.key;if(n>=1&&n<=8&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName))play(n-1)});
+const rb=$('#rainbtn');
+rb.onclick=()=>{
+  const on=rb.getAttribute('aria-pressed')!=='true';rb.setAttribute('aria-pressed',on);
+  rb.textContent=on?'🌧️ Rain sounds: on':'🌧️ Rain sounds: off';
+  const a=ctx();if(!a)return;
+  if(on){const b=a.createBuffer(1,a.sampleRate*2,a.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+    const s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();
+    s.buffer=b;s.loop=true;f.type='bandpass';f.frequency.value=1400;g.gain.value=.12;
+    s.connect(f);f.connect(g);g.connect(master);s.start();rainSrc=s}
+  else if(rainSrc){rainSrc.stop();rainSrc=null}};
+
+/* ---------- postcards ---------- */
+$$('.flip').forEach(c=>{const t=()=>c.classList.toggle('on');c.onclick=t;
+  c.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
+
+/* ---------- scroll story reveal ---------- */
+if('IntersectionObserver'in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('in',e.isIntersecting)),{threshold:.35});
+  $$('.scene').forEach(s=>io.observe(s))}
+else $$('.scene').forEach(s=>s.classList.add('in'));
+
+/* ---------- Umbrella Routes: SVG path synced to scroll ---------- */
+const sec=$('#route'),path=$('#rpath'),mk=$('#rmk'),L=path.getTotalLength(),stops=$$('.stop'),items=$$('#rlist li');
+path.style.strokeDasharray=L;
+stops.forEach(s=>{const p=path.getPointAtLength(L*+s.dataset.at);s.setAttribute('transform',`translate(${p.x} ${p.y})`)});
+function route(){
+  const r=sec.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));
+  path.style.strokeDashoffset=L*(1-p);
+  const pt=path.getPointAtLength(L*p);mk.setAttribute('transform',`translate(${pt.x} ${pt.y})`);
+  stops.forEach((s,i)=>{const on=p>=+s.dataset.at;s.classList.toggle('on',on);items[i].classList.toggle('on',on)})}
+addEventListener('scroll',route,{passive:true});addEventListener('resize',route);route();
+
+/* ---------- wish wall (stored in this browser only) ---------- */
+let wishes;try{wishes=JSON.parse(ls.get('mz_wishes')||'[]')}catch(e){wishes=[]}
+function drawW(){const gb=$('#gb');gb.innerHTML='';
+  [...wishes.slice(-8).reverse(),'Mizzle: tiny weather counts too ☁️'].forEach(w=>{const li=document.createElement('li');li.textContent='💌 '+w;gb.append(li)})}
+$('#wf').onsubmit=e=>{e.preventDefault();const i=$('#wi'),t=i.value.trim().slice(0,80);if(!t)return;
+  wishes.push(t);ls.set('mz_wishes',JSON.stringify(wishes.slice(-20)));i.value='';drawW();burst(['💧','💖'],10);tone(660,.4)};
+drawW();
+
+/* ---------- Easter egg: boop the nose 5 times ---------- */
+let boops=0;const nose=$('#nose');
+function boop(){
+  boops++;tone(520+boops*60,.15,'triangle',.2);svg.classList.add('boop');setTimeout(()=>svg.classList.remove('boop'),180);
+  if(boops>=5){boops=0;tone(70,1.6,'sawtooth',.3);burst(['🌈','⭐','💧','💖']);
+    const m=$('main');m.classList.add('shake');setTimeout(()=>m.classList.remove('shake'),1600);
+    const egg=$('#egg');egg.hidden=false;setTimeout(()=>egg.hidden=true,3500)}}
+nose.onclick=boop;
+nose.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();boop()}};
+})();
+
+(()=>{
+if(!window.THREE)return;
+const T=THREE,root=document.documentElement,cv=document.getElementById('gl'),st=document.getElementById('story');
+let ren;try{ren=new T.WebGLRenderer({canvas:cv,alpha:true,antialias:true})}catch(e){cv.remove();return}
+ren.setPixelRatio(Math.min(devicePixelRatio,2));
+const sc=new T.Scene(),cam=new T.PerspectiveCamera(40,1,.1,50);cam.position.z=9;
+sc.add(new T.HemisphereLight(0xffffff,0xffc9d6,.85));
+const dl=new T.DirectionalLight(0xffffff,.7);dl.position.set(3,5,6);sc.add(dl);
+const mat=new T.MeshLambertMaterial({color:0xffffff}),om=new T.MeshBasicMaterial({color:0x5c4033,side:T.BackSide});
+const g=new T.Group(),body=new T.Group();g.add(body);sc.add(g);
+[[-1.1,-.2,0,.9],[1.1,-.2,0,.9],[0,.35,0,1.1],[-.55,.8,-.1,.7],[.6,.75,-.1,.65],[0,-.35,.1,1]].forEach(([x,y,z,r])=>{
+  const geo=new T.SphereGeometry(r,28,20),m=new T.Mesh(geo,mat),o=new T.Mesh(geo,om);
+  o.scale.setScalar(1.07);m.position.set(x,y,z);o.position.copy(m.position);body.add(o,m)});
+const mk=(r,c,x,y,z,p)=>{const m=new T.Mesh(new T.SphereGeometry(r,16,12),new T.MeshBasicMaterial({color:c}));m.position.set(x,y,z);(p||body).add(m);return m};
+const pups=[];
+[-1,1].forEach(s=>{const e=new T.Group();e.position.set(s*.48,.12,.95);body.add(e);
+  mk(.24,0xffffff,0,0,0,e);pups.push(mk(.12,0x3b2a24,0,0,.2,e));mk(.04,0xffffff,.04,.05,.3,e);
+  mk(.17,0xff9ec0,s*.45,-.38,-.08,e).scale.z=.4});
+const mo=new T.Mesh(new T.TorusGeometry(.2,.045,8,20,Math.PI),new T.MeshBasicMaterial({color:0x5c4033}));
+mo.rotation.z=Math.PI;mo.position.set(0,-.12,1.1);body.add(mo);mk(.09,0xa34063,0,0,1.05);
+/* rain grows with the story */
+const RN=90,a0=new Float32Array(RN*3),sp=[];
+for(let i=0;i<RN;i++){a0.set([(Math.random()-.5)*2.6,-1.4-Math.random()*3,(Math.random()-.5)*1.5],i*3);sp.push(.02+Math.random()*.03)}
+const rgeo=new T.BufferGeometry();rgeo.setAttribute('position',new T.BufferAttribute(a0,3));
+const rain=new T.Points(rgeo,new T.PointsMaterial({color:0x6bb6ff,size:.16}));rain.frustumCulled=false;g.add(rain);
+/* rainbow appears in the last scene */
+const rb=new T.Group();
+['#ff6b6b','#ffa94d','#ffe066','#69db7c','#4dabf7','#b197fc'].forEach((c,i)=>rb.add(new T.Mesh(new T.TorusGeometry(2.7+i*.16,.08,8,48,Math.PI),new T.MeshBasicMaterial({color:c}))));
+rb.position.set(0,-.6,-1.6);g.add(rb);
+/* colours follow day/night */
+function col(){const cs=getComputedStyle(root);mat.color.set(cs.getPropertyValue('--cloud').trim()||'#fff');om.color.set(cs.getPropertyValue('--ink').trim()||'#5c4033')}
+new MutationObserver(col).observe(root,{attributes:true,attributeFilter:['data-mode']});col();
+const sm=(a,b,x)=>{x=Math.min(1,Math.max(0,(x-a)/(b-a)));return x*x*(3-2*x)};
+function resize(){const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;ren.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',resize);
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let on=false,raf=0,t=0,mx=0,my=0;
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1},{passive:true});
+function frame(){
+  if(!on){raf=0;return}raf=requestAnimationFrame(frame);t+=.016;
+  const r=st.getBoundingClientRect(),p=Math.min(1,Math.max(0,-r.top/(r.height-innerHeight))),wide=cam.aspect>1.2;
+  g.scale.setScalar((wide?1:.65)*(.45+.55*sm(0,.8,p)));
+  g.position.set(wide?cam.aspect*1.7:0,(wide?0:1.9)+(rm?0:Math.sin(t*1.5)*.15),0);
+  body.rotation.y=Math.sin(p*6.28)*.7+mx*.25;body.rotation.x=my*.12;
+  const n=root.dataset.mode==='night';
+  pups.forEach(q=>{q.position.x=mx*.07;q.position.y=-my*.06;q.scale.y+=((n?.35:1)-q.scale.y)*.1});
+  const pa=rgeo.attributes.position,a=pa.array;
+  if(!rm)for(let i=0;i<RN;i++){a[i*3+1]-=sp[i];if(a[i*3+1]<-4.4)a[i*3+1]=-1.4}
+  pa.needsUpdate=true;rgeo.setDrawRange(0,Math.floor(RN*(.15+.85*p)));
+  rb.scale.setScalar(Math.max(.001,sm(.72,.95,p)));
+  ren.render(sc,cam)}
+new IntersectionObserver(([e])=>{on=e.isIntersecting;if(on){resize();if(!raf)frame()}}).observe(st);
+})();
+</script>
+</body>
+</html>
